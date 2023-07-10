@@ -1,7 +1,7 @@
 import random
 import time
 
-from functions import scoring, find_card_order, create_deck
+from functions import scoring, find_card_order, create_deck, count_round
 
 my_cards = [] # user's deck
 co_cards = [] # computer's deck
@@ -29,7 +29,8 @@ for (i, card) in enumerate(my_cards, start=0):
 create_deck(maisu, co_cards)
 
 # 3 choose which card to play
-print('Which card do you want to play first?')
+count_round(maisu)
+print('Which card do you want to play?')
 index = int(input('Choose the index number: '))
 my_card = my_cards[index]
 print(f"You play [{my_card}]")

@@ -40,7 +40,14 @@ def create_deck(maisu, whoes):
         whoes.append(make_cards())
 
 
-def one_round(maisu, index):
-    for i in maisu:
-        print(f"Round {i}!")
-        my_turn = my_cards[index]
+def count_round(maisu):
+    rounds = maisu - 1
+    if rounds == 0:
+        print("Final round!")
+    else:
+        for i in rounds:
+            print(f"Round {i}!")
+            rounds = rounds - 1
+
+
+
