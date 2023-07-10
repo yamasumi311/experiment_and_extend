@@ -9,6 +9,15 @@ co_cards = [] # computer's deck
 my_score = 0
 co_score = 0
 
+# Rule
+print("This game compares numbers of cards played in a round.")
+print("Higher number wins and gives you one point.")
+print("You can not use the card you have used")
+print("In the end of game, the person who gets higher score wins!")
+print("Let's get started!")
+time.sleep(1)
+
+
 # 1 ask user to choose maisu and reveal the deck
 maisu = int(input('How many cards do you want to play?: '))
 create_deck(maisu, my_cards)
@@ -32,7 +41,7 @@ index = random.randint(0, maisu - 1)
 co_card = co_cards[index]
 print(f"Computer plays [{co_card}]")
 
-# compare result
+# 5 compare result
 result = find_card_order(my_card, co_card)
 my_score, co_score = scoring(result, my_score, co_score)
 print(f"Your score is: {my_score}")

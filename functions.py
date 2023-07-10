@@ -38,3 +38,9 @@ def find_card_order(card1, card2):
 def create_deck(maisu, whoes):
     for i in range(maisu):
         whoes.append(make_cards())
+
+
+def one_round(maisu, index):
+    for i in maisu:
+        print(f"Round {i}!")
+        my_turn = my_cards[index]
