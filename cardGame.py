@@ -1,42 +1,41 @@
 import random
+import time
 
-numbers = ['A','2', '3', '4', '5', '6', '7', '8', '9', '10', 'J','Q','K']
-suits = ['Dia', 'Spade', 'Clover', 'Heart']
+from functions import scoring, find_card_order, create_deck
+
 my_cards = [] # user's deck
 co_cards = [] # computer's deck
 
+my_score = 0
+co_score = 0
 
-def make_cards():
-    number = random.choice(numbers)
-    suit = random.choice(suits)
-    card = number + '-' + suit
-    return card
-
-
-def find_card_order(card1, card2):
-    if card1 == card2:
-        return 'same' #picked the same card
-    cpos1 = card1[0: card1.find('-')] # Array slicing [start:end:step]
-    cpos2 = card2[0: card2.find('-')]
-    order1 = numbers.index(cpos1)
-    order2 = numbers.index(cpos2)
-    if order1 > order2:
-        return 'higher'
-    elif order1 < order2:
-        return 'lower'
-    else: #same cardno but not same suit
-        return 'same'
-
-
-def create_deck(maisu):
-    for i in range(maisu):
-        my_cards.append(make_cards())
-
-
-# 1 ask user to choose numbers of cards to play
+# 1 ask user to choose maisu and reveal the deck
 maisu = int(input('How many cards do you want to play?: '))
-create_deck(maisu)
-print(my_cards)
+create_deck(maisu, my_cards)
+print("Your deck:")
+for (i, card) in enumerate(my_cards, start=0):
+    print(f"{i}: {card}")
 
+# 2 make a computer deck
+create_deck(maisu, co_cards)
+
+# 3 choose which card to play
+print('Which card do you want to play first?')
+index = int(input('Choose the index number: '))
+my_card = my_cards[index]
+print(f"You play [{my_card}]")
+
+# 4 computer's turn
+print("Computer's turn")
+time.sleep(1)
+index = random.randint(0, maisu - 1)
+co_card = co_cards[index]
+print(f"Computer plays [{co_card}]")
+
+# compare result
+result = find_card_order(my_card, co_card)
+my_score, co_score = scoring(result, my_score, co_score)
+print(f"Your score is: {my_score}")
+print(f"Computer's score is: {co_score}")
 
 
